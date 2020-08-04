@@ -1,0 +1,37 @@
+*{
+    font-family: 'Quicksand', sans-serif;
+}
+header {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 36px 54px 0px rgba(0,0,0,0.75);
+}
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 50%, #ffffff 100%);
+
+    min-height: 38rem;
+}
+#game {
+    display: grid;
+    width: 28rem;
+    height: 28rem;
+    border: solid black 3px;
+    grid-template-columns: repeat(3,33%);
+    grid-template-rows:repeat(3,33%) ;
+    align-items: center;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.75);
+}
+#github-link{
+    color: black;
+    font-size: 2rem;
+    margin-left: 1rem;
+}
