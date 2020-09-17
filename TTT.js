@@ -75,11 +75,11 @@ const twoPlayers = {
             cell.classList.add('cell');
             cell.innerHTML="";
             cell.addEventListener('click',function() {
-                if(count%2===0) {
+                if(count%2===0 && cell.innerHTML==="") {
                     cell.innerHTML="X";
                     count+=1
                 }
-                else{
+                else if(cell.innerHTML===""){
                     cell.innerHTML="O";
                     count+=1
                 }
@@ -141,4 +141,9 @@ button.addEventListener('click',function(){
         twoPlayers.generateBoard();
         button.innerHTML="2 Players";
     }
+})
+let reset = document.querySelector('#reset');
+reset.addEventListener('click',function() {
+    twoPlayers.resetBoard();
+    count=0;
 })
