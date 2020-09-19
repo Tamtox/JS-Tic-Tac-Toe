@@ -1,24 +1,41 @@
 *{
     font-family: 'Quicksand', sans-serif;
 }
-header {
-    display: grid;
+#display{
+    background-color: ghostwhite;
+    min-width: 20rem;
+    border-radius: 2%;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75)1.5
+}
+#buttons{
+    display: flex;
     justify-content: center;
+    padding-right: 0.5rem;
 }
 .button{
     font-size: 1.2rem;
-    min-width: 3rem;
-    background-image: linear-gradient(62deg, #00000025 0%, #ffffff 50%, #00000027 100%);
-    border-radius: 10%;
+    min-width: 9rem; 
+    background-image: linear-gradient(62deg, #eeeeee 0%, #f5f5f5 50%, #eeeeee 100%);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 5%;
     margin: 0rem 1rem 1rem 1rem;
+    margin-top: 0.2rem;
+    transition: all .2s ease-in-out;
+}
+.button:hover {
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
 }
 main {
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 50%, #ffffff 100%);
+    height: 38.6rem;
+    padding-top: 1rem;
+}
+#main {
+    margin-top: 2rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #8EC5FC;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 50%, #ffffff 100%);
-    height: 35.6rem;
 }
 #game {
     display: grid;
@@ -36,14 +53,18 @@ main {
     display: flex;
     align-items: center ;
     justify-content: center;
+    transition: all .2s ease-in-out;
+}
+.cell:hover {
+    box-shadow: -3px 3px 30px -10px rgb(126, 126, 126);
 }
 .top-and-bottom {
-    border-bottom: solid black 1px;
-    border-top: solid black 1px;
+    border-bottom: solid black 1.5px;
+    border-top: solid black 1.5px;
 }
 .right-and-left {
-    border-right: solid black 1px;
-    border-left: solid black 1px;
+    border-right: solid black 1.5px;
+    border-left: solid black 1.5px;
 }
 footer {
     display: flex;

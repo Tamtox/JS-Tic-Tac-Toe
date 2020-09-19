@@ -3,7 +3,7 @@ const computer = {
     main:document.querySelector('main')
 }
 const twoPlayers = {
-    main:document.querySelector('main'),
+    main:document.querySelector('#main'),
     solution:function (board) {
         function validateRows(num) {
             for(let row of board) {
@@ -136,6 +136,8 @@ const twoPlayers = {
     }
 }
 let button = document.querySelector('#start');
+
+3
 button.addEventListener('click',function(){
     if(button.innerHTML==="Start!") {
         twoPlayers.generateBoard();
