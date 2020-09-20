@@ -1,7 +1,86 @@
 let count = 0;
+//Computer Logic
 const computer = {
-    main:document.querySelector('main')
+    main:document.querySelector('main'),
+    cpuMove:function() {
+        let cells = document.querySelectorAll('.cell');
+    },
+    generateBoard:function () {
+        let display = document.querySelector('#display')
+         //Generate Board
+        let game = document.createElement('div');
+        game.setAttribute('id','game');
+        game.classList.add('text-center');
+        this.main.appendChild(game);
+        for(let i=0;i<9;i++) {
+            let cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.innerHTML="";
+            cell.addEventListener('click',function() {
+                if(count%2===0 && cell.innerHTML==="") {
+                    cell.innerHTML="X";
+                    count+=1
+                }
+                else if(count%2!==0 && cell.innerHTML===""){
+                    this.cpuMove()
+                    count+=1
+                }
+                let check = twoPlayers.solution(twoPlayers.getArray());
+                if(check==="Tic") {
+                    let currentScore = document.querySelector('#player1 h2').innerHTML;
+                    document.querySelector('#player1 h2').innerHTML = `${parseInt(currentScore)+1}`;
+                    twoPlayers.resetBoard();
+                    count = 0;
+                    display.innerHTML="Player 1 Wins" 
+                }
+                else if(check ==="Tac") {
+                    let currentScore = document.querySelector('#player2 h2').innerHTML;
+                    document.querySelector('#player2 h2').innerHTML = `${parseInt(currentScore)+1}`;
+                    twoPlayers.resetBoard();
+                    count = 0;
+                    display.innerHTML="Computer Wins"
+                }
+                else if(check ==="Draw") {
+                    twoPlayers.resetBoard();
+                    count = 0;
+                    display.innerHTML="Draw" 
+                }
+            });
+            if(i === 1 || i === 7) {
+                cell.classList.add('right-and-left')
+            }
+            else if (i === 3 || i === 4 || i ===5) {
+                if(i===4) {
+                    cell.classList.add('top-and-bottom')
+                    cell.classList.add('right-and-left')
+                }
+                else {
+                    cell.classList.add('top-and-bottom')
+                }
+            }
+            game.appendChild(cell)
+        }
+        //Gererate players
+        for(let i =0;i<2;i++) {
+            let header = document.createElement('h3');
+            let score = document.createElement('h2');
+            let player = document.createElement('div');
+            player.setAttribute('id',`player${i+1}`);
+            player.classList.add('text-center');
+            header.innerHTML=`Player ${i+1}`;
+            score.innerHTML="0";
+            player.appendChild(header);
+            player.appendChild(score); 
+            if(i===0) {
+                this.main.prepend(player)
+            }
+            else if(i===1) {
+                this.main.append(player)
+            }
+        }
+    }
 }
+//Two Players Logic
 const twoPlayers = {
     main:document.querySelector('#main'),
     solution:function (board) {
@@ -56,6 +135,16 @@ const twoPlayers = {
             cell.innerHTML="";
         }
     },
+    resetBoardAndScore:function() {
+        let cells = document.querySelectorAll(".cell")
+        for(let cell of cells) {
+            cell.innerHTML="";
+        }
+        let score = document.querySelectorAll('.score')
+        for(let i of score) {
+            i.innerHTML="0";
+        }
+    },
     clearBoard:function () {
         let player1 = document.querySelector('#player1');
         let board = document.querySelector('#game');
@@ -65,6 +154,7 @@ const twoPlayers = {
         this.main.removeChild(player2);
     },
     generateBoard:function () {
+        let display = document.querySelector('#display')
          //Generate Board
         let game = document.createElement('div');
         game.setAttribute('id','game');
@@ -86,19 +176,22 @@ const twoPlayers = {
                 let check = twoPlayers.solution(twoPlayers.getArray());
                 if(check==="Tic") {
                     let currentScore = document.querySelector('#player1 h2').innerHTML;
-                    document.querySelector('#player1 h2').innerHTML = `${parseInt(currentScore)+1}`; 
+                    document.querySelector('#player1 h2').innerHTML = `${parseInt(currentScore)+1}`;
                     twoPlayers.resetBoard();
                     count = 0;
+                    display.innerHTML="Player 1 Wins" 
                 }
                 else if(check ==="Tac") {
                     let currentScore = document.querySelector('#player2 h2').innerHTML;
                     document.querySelector('#player2 h2').innerHTML = `${parseInt(currentScore)+1}`;
                     twoPlayers.resetBoard();
                     count = 0;
+                    display.innerHTML="Player 2 Wins"
                 }
                 else if(check ==="Draw") {
                     twoPlayers.resetBoard();
                     count = 0;
+                    display.innerHTML="Draw" 
                 }
             });
             if(i === 1 || i === 7) {
@@ -123,6 +216,7 @@ const twoPlayers = {
             player.setAttribute('id',`player${i+1}`);
             player.classList.add('text-center');
             header.innerHTML=`Player ${i+1}`;
+            score.classList.add('score')
             score.innerHTML="0";
             player.appendChild(header);
             player.appendChild(score); 
@@ -135,17 +229,30 @@ const twoPlayers = {
         }
     }
 }
+//Buttons
 let button = document.querySelector('#start');
-
-3
 button.addEventListener('click',function(){
+    let display = document.querySelector('#display')
     if(button.innerHTML==="Start!") {
+        twoPlayers.generateBoard();
+        button.innerHTML="2 Players";
+        display.innerHTML="Press 2 Players again!"
+    }
+    else if(button.innerHTML==="2 Players") {
+        twoPlayers.clearBoard();
+        twoPlayers.generateBoard();
+        button.innerHTML="Computer";
+        let cpu = document.querySelector('#player2 h3');
+        cpu.innerHTML="Computer"
+    }
+    else if(button.innerHTML==="Computer") {
+        twoPlayers.clearBoard();
         twoPlayers.generateBoard();
         button.innerHTML="2 Players";
     }
 })
 let reset = document.querySelector('#reset');
 reset.addEventListener('click',function() {
-    twoPlayers.resetBoard();
+    twoPlayers.resetBoardAndScore();
     count=0;
 })
