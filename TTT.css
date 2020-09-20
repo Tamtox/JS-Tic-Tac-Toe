@@ -1,6 +1,9 @@
 *{
     font-family: 'Quicksand', sans-serif;
 }
+#body{
+    height: 89vh;
+}
 #display{
     background-color: ghostwhite;
     min-width: 25rem;
@@ -29,7 +32,7 @@
 main {
     background-color: #8EC5FC;
     background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 50%, #ffffff 100%);
-    height: 38.6rem;
+    height: 100%;
     padding-top: 1rem;
 }
 #main {
@@ -40,15 +43,15 @@ main {
 }
 #game {
     display: grid;
-    width: 28rem;
-    height: 28rem;
+    width: 40rem;
+    height: 40rem;
     grid-template-columns: repeat(3,33.3%);
     grid-template-rows:repeat(3,33.3%) ;
     align-items: center;
     box-sizing: border-box;
 }
 .cell {
-    font-size: 3rem;
+    font-size: 5rem;
     min-width: 100%;
     min-height: 100%;
     display: flex;

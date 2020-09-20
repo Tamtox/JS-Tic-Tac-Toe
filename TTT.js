@@ -3,7 +3,7 @@ let count = 0;
 const computer = {
     main:document.querySelector('main'),
     cpuMove:function() {
-        let cells = document.querySelectorAll('.cell');
+        let cells = document.querySelectorAll('.cell'); 
     },
     generateBoard:function () {
         let display = document.querySelector('#display')
