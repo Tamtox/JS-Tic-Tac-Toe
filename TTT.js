@@ -236,7 +236,7 @@ button.addEventListener('click',function(){
     if(button.innerHTML==="Start!") {
         twoPlayers.generateBoard();
         button.innerHTML="2 Players";
-        display.innerHTML="Press 2 Players again!"
+        display.innerHTML="Press 2 Players/Computer to switch!"
     }
     else if(button.innerHTML==="2 Players") {
         twoPlayers.clearBoard();
