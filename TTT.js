@@ -1,83 +1,22 @@
 let count = 0;
+let button = document.querySelector('#start');
+let mode = "Easy"
 //Computer Logic
 const computer = {
-    main:document.querySelector('main'),
-    cpuMove:function() {
-        let cells = document.querySelectorAll('.cell'); 
+    cpuMoveEasy:function() {
+        let cells = document.querySelectorAll('.cell');
+        for(let cell of cells) {
+            if(cell.innerHTML==="") {
+                return true
+            }
+        }
+        cells[Math.floor]
     },
-    generateBoard:function () {
-        let display = document.querySelector('#display')
-         //Generate Board
-        let game = document.createElement('div');
-        game.setAttribute('id','game');
-        game.classList.add('text-center');
-        this.main.appendChild(game);
-        for(let i=0;i<9;i++) {
-            let cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.innerHTML="";
-            cell.addEventListener('click',function() {
-                if(count%2===0 && cell.innerHTML==="") {
-                    cell.innerHTML="X";
-                    count+=1
-                }
-                else if(count%2!==0 && cell.innerHTML===""){
-                    this.cpuMove()
-                    count+=1
-                }
-                let check = twoPlayers.solution(twoPlayers.getArray());
-                if(check==="Tic") {
-                    let currentScore = document.querySelector('#player1 h2').innerHTML;
-                    document.querySelector('#player1 h2').innerHTML = `${parseInt(currentScore)+1}`;
-                    twoPlayers.resetBoard();
-                    count = 0;
-                    display.innerHTML="Player 1 Wins" 
-                }
-                else if(check ==="Tac") {
-                    let currentScore = document.querySelector('#player2 h2').innerHTML;
-                    document.querySelector('#player2 h2').innerHTML = `${parseInt(currentScore)+1}`;
-                    twoPlayers.resetBoard();
-                    count = 0;
-                    display.innerHTML="Computer Wins"
-                }
-                else if(check ==="Draw") {
-                    twoPlayers.resetBoard();
-                    count = 0;
-                    display.innerHTML="Draw" 
-                }
-            });
-            if(i === 1 || i === 7) {
-                cell.classList.add('right-and-left')
-            }
-            else if (i === 3 || i === 4 || i ===5) {
-                if(i===4) {
-                    cell.classList.add('top-and-bottom')
-                    cell.classList.add('right-and-left')
-                }
-                else {
-                    cell.classList.add('top-and-bottom')
-                }
-            }
-            game.appendChild(cell)
-        }
-        //Gererate players
-        for(let i =0;i<2;i++) {
-            let header = document.createElement('h3');
-            let score = document.createElement('h2');
-            let player = document.createElement('div');
-            player.setAttribute('id',`player${i+1}`);
-            player.classList.add('text-center');
-            header.innerHTML=`Player ${i+1}`;
-            score.innerHTML="0";
-            player.appendChild(header);
-            player.appendChild(score); 
-            if(i===0) {
-                this.main.prepend(player)
-            }
-            else if(i===1) {
-                this.main.append(player)
-            }
-        }
+    cpuMoveNormal:function() {
+
+    },
+    cpuMoveHard:function() {
+
     }
 }
 //Two Players Logic
@@ -169,11 +108,14 @@ const twoPlayers = {
                     cell.innerHTML="X";
                     count+=1
                 }
-                else if(cell.innerHTML===""){
-                    cell.innerHTML="O";
-                    count+=1
+                else if(count%2 !==0 && cell.innerHTML===""){
+                    if(button.innerHTML==="2 Players") {
+                        cell.innerHTML="O";
+                        count+=1
+                    }
                 }
                 let check = twoPlayers.solution(twoPlayers.getArray());
+
                 if(check==="Tic") {
                     let currentScore = document.querySelector('#player1 h2').innerHTML;
                     document.querySelector('#player1 h2').innerHTML = `${parseInt(currentScore)+1}`;
@@ -186,7 +128,12 @@ const twoPlayers = {
                     document.querySelector('#player2 h2').innerHTML = `${parseInt(currentScore)+1}`;
                     twoPlayers.resetBoard();
                     count = 0;
-                    display.innerHTML="Player 2 Wins"
+                    if(button.innerHTML==="2 Players") {
+                        display.innerHTML="Player 2 Wins"
+                    }
+                    else{
+                        display.innerHTML="Computer Wins"
+                    }
                 }
                 else if(check ==="Draw") {
                     twoPlayers.resetBoard();
@@ -214,12 +161,13 @@ const twoPlayers = {
             let score = document.createElement('h2');
             let player = document.createElement('div');
             player.setAttribute('id',`player${i+1}`);
-            player.classList.add('text-center');
+            player.classList.add('player');
             header.innerHTML=`Player ${i+1}`;
+            header.classList.add('header')
             score.classList.add('score')
             score.innerHTML="0";
             player.appendChild(header);
-            player.appendChild(score); 
+            player.appendChild(score);
             if(i===0) {
                 this.main.prepend(player)
             }
@@ -230,7 +178,6 @@ const twoPlayers = {
     }
 }
 //Buttons
-let button = document.querySelector('#start');
 button.addEventListener('click',function(){
     let display = document.querySelector('#display')
     if(button.innerHTML==="Start!") {
@@ -240,15 +187,32 @@ button.addEventListener('click',function(){
     }
     else if(button.innerHTML==="2 Players") {
         twoPlayers.clearBoard();
-        twoPlayers.generateBoard();
         button.innerHTML="Computer";
+        twoPlayers.generateBoard();
         let cpu = document.querySelector('#player2 h3');
         cpu.innerHTML="Computer"
+        let difficultySelection = document.createElement('div');
+        let names = ['Easy','Normal','Hard'];
+        for(let name of names) {
+            let selection = document.createElement('button');
+            selection.innerHTML=name;
+            selection.classList.add('selection');
+            selection.setAttribute('id',name);
+            selection.addEventListener('click',function() {
+                mode = name;
+            })
+            difficultySelection.appendChild(selection);
+        }
+        if(button.innerHTML==="Computer") {
+            let player2 = document.querySelector('#player2')
+            player2.appendChild(difficultySelection);
+        }
     }
     else if(button.innerHTML==="Computer") {
         twoPlayers.clearBoard();
         twoPlayers.generateBoard();
         button.innerHTML="2 Players";
+
     }
 })
 let reset = document.querySelector('#reset');
