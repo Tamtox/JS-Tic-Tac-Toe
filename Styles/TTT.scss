@@ -1,0 +1,15 @@
+@import 'mixins';
+html{
+    font-size: 100%;
+}
+#wrapper{
+    @include widthAndHeight(100vw,100vh);
+    background-color: bisque;
+    #game{
+        @include grid(repeat(3,33.33%),repeat(3,33.33%));
+        .cell{
+            @include flex(center,center);
+        }
+    }
+}
+@import 'media-queries';
