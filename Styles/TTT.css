@@ -40,10 +40,8 @@ html {
 }
 
 .button {
-  -webkit-transition: -webkit-box-shadow 0.5s;
-  transition: -webkit-box-shadow 0.5s;
-  transition: box-shadow 0.5s;
-  transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,13 +54,16 @@ html {
   width: 10%;
   height: 70%;
   font-size: 1.2rem;
-  border: solid 1px black;
+  border: solid 3px black;
   border-radius: 10px;
+  background-color: #f1ebeb;
 }
 
 .button:hover {
   -webkit-box-shadow: 0px 0px 10px black;
           box-shadow: 0px 0px 10px black;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 #game {
@@ -113,16 +114,16 @@ html {
 }
 
 .borderB {
-  border-bottom: solid 1px black;
+  border-bottom: solid 2px black;
 }
 
 .borderLR {
-  border-left: solid 1px black;
-  border-right: solid 1px black;
+  border-left: solid 2px black;
+  border-right: solid 2px black;
 }
 
 .borderT {
-  border-top: solid 1px black;
+  border-top: solid 2px black;
 }
 
 #player-1 {
@@ -133,7 +134,7 @@ html {
   -ms-grid-rows: 30% 70%;
   -ms-grid-columns: 100%;
       grid-template: 30% 70%/100%;
-  border: solid 1px black;
+  border: solid 2px black;
   border-radius: 10px;
 }
 
@@ -171,7 +172,7 @@ html {
   -ms-grid-rows: 30% 70%;
   -ms-grid-columns: 100%;
       grid-template: 30% 70%/100%;
-  border: solid 1px black;
+  border: solid 2px black;
   border-radius: 10px;
 }
 

@@ -24,15 +24,17 @@ html{
     @include widthAndHeight(15%,70%);
 }
 .button{
-    transition: box-shadow 0.5s;
+    transition: 0.5s;
     @include flex(center,center);
     @include widthAndHeight(10%,70%);
     font-size: 1.2rem;
-    border: solid 1px black;
+    border: solid 3px black;
     border-radius: 10px;
+    background-color: rgb(241, 235, 235);
 }
 .button:hover{
     box-shadow: 0px 0px 10px black;
+    transform: scale(1.05)
 }
 #game{
     @include widthAndHeight(90%,90%);
@@ -52,19 +54,19 @@ html{
     box-shadow: 0px 0px 10px black;
 }
 .borderB{
-    border-bottom: solid 1px black;
+    border-bottom: solid 2px black;
 }
 .borderLR{
-    border-left: solid 1px black;
-    border-right: solid 1px black;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
 }
 .borderT{
-    border-top: solid 1px black;
+    border-top: solid 2px black;
 }
 #player-1{
     @include widthAndHeight(20%,40%);
     @include grid(100%,30% 70%);
-    border: solid 1px black;
+    border: solid 2px black;
     border-radius: 10px;
 }
 .playerName{
@@ -78,7 +80,7 @@ html{
 #player-2{
     @include widthAndHeight(20%,40%);
     @include grid(100%,30% 70%);
-    border: solid 1px black;
+    border: solid 2px black;
     border-radius: 10px;
 }
 @import 'media-queries';
