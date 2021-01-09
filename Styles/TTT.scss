@@ -1,15 +1,84 @@
 @import 'mixins';
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 html{
     font-size: 100%;
 }
 #wrapper{
-    @include widthAndHeight(100vw,100vh);
-    background-color: bisque;
-    #game{
-        @include grid(repeat(3,33.33%),repeat(3,33.33%));
-        .cell{
-            @include flex(center,center);
-        }
-    }
+    @include widthAndHeight(100%,100vh);
+    background: rgb(5,214,246);
+    background: linear-gradient(45deg, rgba(5,214,246,1) 0%, rgba(194,6,232,1) 50%, rgba(0,212,255,1) 100%);
+    padding-top: 3%;
+}
+#controls{
+    @include widthAndHeight(90%,10%);
+    @include flex(center,center);
+    margin: auto;
+}
+#mode{
+    font-size: 1.5rem;
+    margin: auto 5% auto 5%;
+    @include widthAndHeight(15%,70%);
+}
+.button{
+    transition: box-shadow 0.5s;
+    @include flex(center,center);
+    @include widthAndHeight(10%,70%);
+    font-size: 1.2rem;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+.button:hover{
+    box-shadow: 0px 0px 10px black;
+}
+#game{
+    @include widthAndHeight(90%,90%);
+    @include flex(space-between,center);
+    margin: auto;
+}
+#board{
+    @include widthAndHeight(30%,70%);
+    @include grid(repeat(3,33.33%),repeat(3,33.33%));
+}
+.cell{
+    @include flex(center,center);
+    font-size: 3em;
+    transition: box-shadow 0.5s;
+}
+.cell:hover{
+    box-shadow: 0px 0px 10px black;
+}
+.borderB{
+    border-bottom: solid 1px black;
+}
+.borderLR{
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+}
+.borderT{
+    border-top: solid 1px black;
+}
+#player-1{
+    @include widthAndHeight(20%,40%);
+    @include grid(100%,30% 70%);
+    border: solid 1px black;
+    border-radius: 10px;
+}
+.playerName{
+    @include flex(center,center);
+    font-size: 2rem;
+}
+.playerScore{
+    @include flex(center,center);
+    font-size: 3rem;
+}
+#player-2{
+    @include widthAndHeight(20%,40%);
+    @include grid(100%,30% 70%);
+    border: solid 1px black;
+    border-radius: 10px;
 }
 @import 'media-queries';
