@@ -7,6 +7,10 @@ const player2 = document.querySelector('#player-2');
 const reset = document.querySelector('#reset');
 const mode = document.querySelector('#mode');
 const clear = document.querySelector('#clear');
+const difficultyNode = document.querySelector('#difficulty');
+const easy = difficultyNode.children[0];
+const normal = difficultyNode.children[1]; 
+const hard = difficultyNode.children[2]; 
 // Conditions and states
 const conditions = {
     turn:"X",
@@ -23,6 +27,16 @@ reset.addEventListener('click',function() {
 mode.addEventListener('click',function() {
     functions.resetBoard();
     functions.gameMode();
+});
+// Difficulty Buttons
+easy.addEventListener('click',function() {
+    conditions.difficulty = this.innerText;
+});
+normal.addEventListener('click',function() {
+    conditions.difficulty = this.innerText;
+});
+hard.addEventListener('click',function() {
+    conditions.difficulty = this.innerText;
 });
 // Functions
 const functions = {
@@ -111,6 +125,20 @@ const functions = {
         this.clearBoard();
         player1.children[1].innerText = '0';
         player2.children[1].innerText = '0';
+    },
+    gameMode() {
+        if(conditions.mode === "2 Players") {
+            conditions.mode = "Computer";
+            mode.innerText = "Computer";
+            player2.children[0].innerText = "Computer";
+            difficultyNode.style.display = "flex";
+        }
+        else if(conditions.mode === "Computer") {
+            conditions.mode = "2 Players";
+            mode.innerText = "2 Players";
+            player2.children[0].innerText = "Player 2";
+            difficultyNode.style.display = "none";
+        }
     }
 }
 functions.generateBoard()

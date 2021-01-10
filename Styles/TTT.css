@@ -14,7 +14,7 @@ html {
   height: 100vh;
   background: #05d6f6;
   background: linear-gradient(45deg, #05d6f6 0%, #c206e8 50%, #00d4ff 100%);
-  padding-top: 3%;
+  padding-top: 2%;
 }
 
 #controls {
@@ -59,7 +59,26 @@ html {
   background-color: #f1ebeb;
 }
 
-.button:hover {
+.button-small {
+  width: 33%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.3rem;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border: solid 3px black;
+  border-radius: 10px;
+  background-color: #f1ebeb;
+}
+
+.button:hover, .button-small:hover {
   -webkit-box-shadow: 0px 0px 10px black;
           box-shadow: 0px 0px 10px black;
   -webkit-transform: scale(1.05);
@@ -164,9 +183,19 @@ html {
   font-size: 3rem;
 }
 
-#player-2 {
+#player-2-difficulty {
   width: 20%;
-  height: 40%;
+  height: 45%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 85% 15%;
+  -ms-grid-columns: 100%;
+      grid-template: 85% 15%/100%;
+  -webkit-transform: translateY(8%);
+          transform: translateY(8%);
+}
+
+#player-2 {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 30% 70%;
@@ -174,6 +203,15 @@ html {
       grid-template: 30% 70%/100%;
   border: solid 2px black;
   border-radius: 10px;
+}
+
+#difficulty {
+  display: none;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 600px) {

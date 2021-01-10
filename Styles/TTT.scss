@@ -11,7 +11,7 @@ html{
     @include widthAndHeight(100%,100vh);
     background: rgb(5,214,246);
     background: linear-gradient(45deg, rgba(5,214,246,1) 0%, rgba(194,6,232,1) 50%, rgba(0,212,255,1) 100%);
-    padding-top: 3%;
+    padding-top: 2%;
 }
 #controls{
     @include widthAndHeight(90%,10%);
@@ -32,7 +32,16 @@ html{
     border-radius: 10px;
     background-color: rgb(241, 235, 235);
 }
-.button:hover{
+.button-small{
+    @include widthAndHeight(33%,90%);
+    @include flex(space-around,center);
+    font-size: 1.3rem;
+    transition: 0.5s;
+    border: solid 3px black;
+    border-radius: 10px;
+    background-color: rgb(241, 235, 235);
+}
+.button:hover, .button-small:hover{
     box-shadow: 0px 0px 10px black;
     transform: scale(1.05)
 }
@@ -77,10 +86,19 @@ html{
     @include flex(center,center);
     font-size: 3rem;
 }
+#player-2-difficulty{
+    @include widthAndHeight(20%,45%);
+    @include grid(100%,85% 15%);
+    transform: translateY(8%);
+}
 #player-2{
-    @include widthAndHeight(20%,40%);
     @include grid(100%,30% 70%);
     border: solid 2px black;
     border-radius: 10px;
+}
+#difficulty{
+    display:none;
+    justify-content: space-around;
+    align-items: center
 }
 @import 'media-queries';
