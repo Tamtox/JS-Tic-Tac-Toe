@@ -51,7 +51,7 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 10%;
+  width: 15%;
   height: 70%;
   font-size: 1.2rem;
   border: solid 3px black;
@@ -185,14 +185,14 @@ html {
 
 #player-2-difficulty {
   width: 20%;
-  height: 45%;
+  height: 47%;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 85% 15%;
   -ms-grid-columns: 100%;
       grid-template: 85% 15%/100%;
-  -webkit-transform: translateY(8%);
-          transform: translateY(8%);
+  -webkit-transform: translateY(7%);
+          transform: translateY(7%);
 }
 
 #player-2 {
@@ -212,11 +212,83 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 600px) {
   html {
-    font-size: 80%;
+    font-size: 70%;
+  }
+  #mode {
+    width: 30%;
+  }
+  .button {
+    width: 30%;
+  }
+  .button-small {
+    width: 40%;
+    height: 80%;
+  }
+  #game {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding-left: 7%;
+  }
+  #player-1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 90%;
+    height: 7%;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #board {
+    width: 90%;
+    height: 50%;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #player-2-difficulty {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 90%;
+    height: 7%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #player-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+  }
+  #difficulty {
+    width: 100%;
+    height: 100%;
+    display: none;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
   }
 }
 
@@ -224,17 +296,108 @@ html {
   html {
     font-size: 80%;
   }
+  #mode {
+    width: 30%;
+  }
+  .button {
+    width: 30%;
+  }
+  .button-small {
+    width: 40%;
+    height: 80%;
+  }
+  #game {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding-left: 7%;
+  }
+  #player-1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 90%;
+    height: 7%;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #board {
+    width: 90%;
+    height: 50%;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #player-2-difficulty {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 90%;
+    height: 7%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #player-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+  }
+  #difficulty {
+    width: 100%;
+    height: 100%;
+    display: none;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
   html {
     font-size: 85%;
   }
+  #mode {
+    width: 20%;
+  }
+  .button {
+    width: 20%;
+  }
+  #board {
+    width: 45%;
+  }
+  .button-small {
+    width: 100%;
+  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   html {
     font-size: 90%;
+  }
+  #mode {
+    width: 15%;
+  }
+  .button {
+    width: 15%;
+  }
+  #board {
+    width: 35%;
   }
 }
 
