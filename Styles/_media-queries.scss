@@ -73,7 +73,7 @@
         display: flex;
         @include widthAndHeight(90%,7%);
         flex-wrap: wrap;
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
     #player-2{
         @include flex(space-around,center);

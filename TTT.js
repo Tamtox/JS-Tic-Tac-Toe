@@ -15,7 +15,7 @@ const hard = difficultyNode.children[2];
 const conditions = {
     turn:"X",
     mode:"2 Players",
-    difficulty:"Easy"
+    difficulty:"easy"
 }
 // Buttons
 clear.addEventListener('click', function() {
@@ -30,53 +30,49 @@ mode.addEventListener('click',function() {
 });
 // Difficulty Buttons
 easy.addEventListener('click',function() {
-    conditions.difficulty = this.innerText;
+    conditions.difficulty = this.innerText.toLowerCase();
 });
 normal.addEventListener('click',function() {
-    conditions.difficulty = this.innerText;
+    conditions.difficulty = this.innerText.toLowerCase();
 });
 hard.addEventListener('click',function() {
-    conditions.difficulty = this.innerText;
+    conditions.difficulty = this.innerText.toLowerCase();
 });
 // Functions
 const functions = {
-    parseBoard() {
-        let  state = "";
-        let cells = document.querySelectorAll('.cell');
-        let count = 0;
-        // Convert board into string XXX-XXX-XXX
-        cells.forEach(x=>{
-            if(count ===3 || count === 6) {
-                state+="-"
-            }
-            let text = x.innerText;
-            if(text === "") {
-                state+=" ";
-            }
-            state+= text;
-            count+=1;
-        })
-        if(/XXX|X...X...X|X....X....X|X..X..X/.test(state)) return 'X';
-        if(/OOO|O...O...O|O....O....O|O..O..O/.test(state)) return 'O';
+    solve(state) {
+        if(/XXX|X..X..X|X...X...X|X.X.X/.test(state)) return 'X';
+        if(/OOO|O..O..O|O...O...O|O.O.O/.test(state)) return 'O';
         if(state.includes(' ')) {
             return "Unfinished"
         }
         return "Draw";
     },
+    parseBoard(){
+        let  state = "";
+        let cells = board.children;
+        // Convert board into string
+        for(let i=0;i<cells.length;i++) {
+            let text = cells[i].innerText;
+            if(text === "") {
+                state+=" ";
+            }
+            state+= text;
+        }
+        return state
+    },
     checkAndSet() {
-        if(conditions.mode === "2 Players") {
-            if(this.parseBoard() === "X") {
-                player1.children[1].innerText = parseInt(player1.children[1].innerText) + 1 + "";
-                this.clearBoard();
-            }
-            else if(this.parseBoard() === "O") {
-                player2.children[1].innerText = parseInt(player2.children[1].innerText) + 1 + "";
-                this.clearBoard();
-            }
-            else if(this.parseBoard() === "Draw") {
-                alert("Draw!");
-                this.clearBoard();
-            }
+        if(this.solve(this.parseBoard()) === "X") {
+            player1.children[1].innerText = parseInt(player1.children[1].innerText) + 1 + "";
+            this.clearBoard();
+        }
+        else if(this.solve(this.parseBoard()) === "O") {
+            player2.children[1].innerText = parseInt(player2.children[1].innerText) + 1 + "";
+            this.clearBoard();
+        }
+        else if(this.solve(this.parseBoard()) === "Draw") {
+            alert("Draw!");
+            this.clearBoard();
         }
     },
     generateBoard() {
@@ -101,13 +97,24 @@ const functions = {
                 cell.classList.add('borderT');
             }
             cell.addEventListener('click',function() {
-                if(this.innerHTML === " ") {
-                    this.innerText = conditions.turn;
-                    if(conditions.turn === "X") {
-                        conditions.turn = "O"
+                if(conditions.mode === "2 Players") {
+                    if(this.innerHTML === " ") {
+                        this.innerText = conditions.turn;
+                        if(conditions.turn === "X") {
+                            conditions.turn = "O"
+                        }
+                        else{
+                            conditions.turn = "X"
+                        }
                     }
-                    else{
-                        conditions.turn = "X"
+                }
+                else if(conditions.mode === "Computer") {
+                    if(this.innerHTML === " ") {
+                        if(conditions.turn === "X") {
+                            this.innerText = conditions.turn;
+                            conditions.turn = "O";
+                            computer[conditions.difficulty]();
+                        }
                     }
                 }
                 // Check board
@@ -139,6 +146,28 @@ const functions = {
             player2.children[0].innerText = "Player 2";
             difficultyNode.style.display = "none";
         }
+    }
+}
+const computer = {
+    easy() {
+        // Get Empty Cells
+        let cells = board.children;
+        const emptyCells = [];
+        for(let i=0;i<cells.length;i++) {
+            if(cells[i].innerText === "") {
+                emptyCells.push(i);
+            }
+        }
+        // Choose Random Cell From Empty Cells
+        let num = emptyCells[Math.floor(Math.random()*emptyCells.length)];
+        cells[num].innerText = "O";
+        conditions.turn = "X";
+    },
+    normal() {
+        let cells = document.querySelectorAll('.cell');
+    },
+    hard() {
+        let cells = document.querySelectorAll('.cell');
     }
 }
 functions.generateBoard()
