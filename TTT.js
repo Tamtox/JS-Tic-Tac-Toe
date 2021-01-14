@@ -31,36 +31,50 @@ mode.addEventListener('click',function() {
 // Difficulty Buttons
 easy.addEventListener('click',function() {
     conditions.difficulty = this.innerText.toLowerCase();
+    player2.children[0].innerText = `CPU ${conditions.difficulty}`;
+    functions.resetBoard();
 });
 normal.addEventListener('click',function() {
     conditions.difficulty = this.innerText.toLowerCase();
+    player2.children[0].innerText = `CPU ${conditions.difficulty}`;
+    functions.resetBoard();
 });
 hard.addEventListener('click',function() {
     conditions.difficulty = this.innerText.toLowerCase();
+    player2.children[0].innerText = `CPU ${conditions.difficulty}`;
+    functions.resetBoard();
 });
 // Functions
 const functions = {
+    // Solve current board state
     solve(state) {
-        if(/XXX|X..X..X|X...X...X|X.X.X/.test(state)) return 'X';
-        if(/OOO|O..O..O|O...O...O|O.O.O/.test(state)) return 'O';
+        if(/XXX|X...X...X|X....X....X|X..X..X/.test(state)) return 'X';
+        if(/OOO|O...O...O|O....O....O|O..O..O/.test(state)) return 'O';
         if(state.includes(' ')) {
             return "Unfinished"
         }
         return "Draw";
     },
+    // Turn board into XXX-XXX-XXX string
     parseBoard(){
         let  state = "";
         let cells = board.children;
+        let count = 0;
         // Convert board into string
         for(let i=0;i<cells.length;i++) {
             let text = cells[i].innerText;
+            if(count === 3 || count === 6) {
+                state+="-";
+            }
             if(text === "") {
                 state+=" ";
             }
+            count++;
             state+= text;
         }
         return state
     },
+    // Set scores after solution
     checkAndSet() {
         if(this.solve(this.parseBoard()) === "X") {
             player1.children[1].innerText = parseInt(player1.children[1].innerText) + 1 + "";
@@ -112,8 +126,10 @@ const functions = {
                     if(this.innerHTML === " ") {
                         if(conditions.turn === "X") {
                             this.innerText = conditions.turn;
-                            conditions.turn = "O";
-                            computer[conditions.difficulty]();
+                            if(functions.solve(functions.parseBoard()) === "Unfinished") {
+                                conditions.turn = "O";
+                                computer[conditions.difficulty]();
+                            }
                         }
                     }
                 }
@@ -134,12 +150,14 @@ const functions = {
         player2.children[1].innerText = '0';
     },
     gameMode() {
+        // Set CPU Mode
         if(conditions.mode === "2 Players") {
             conditions.mode = "Computer";
             mode.innerText = "Computer";
-            player2.children[0].innerText = "Computer";
+            player2.children[0].innerText = `CPU ${conditions.difficulty}`;
             difficultyNode.style.display = "flex";
         }
+        // Set 2 Players Mode
         else if(conditions.mode === "Computer") {
             conditions.mode = "2 Players";
             mode.innerText = "2 Players";
