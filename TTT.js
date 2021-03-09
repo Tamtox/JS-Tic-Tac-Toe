@@ -15,7 +15,7 @@ const hard = difficultyNode.children[2];
 const conditions = {
     turn:"X",
     mode:"2 Players",
-    difficulty:"easy"
+    difficulty:"normal"
 }
 // Buttons
 clear.addEventListener('click', function() {
@@ -78,15 +78,18 @@ const functions = {
     checkAndSet() {
         if(this.solve(this.parseBoard()) === "X") {
             player1.children[1].innerText = parseInt(player1.children[1].innerText) + 1 + "";
-            this.clearBoard();
+            conditions.turn = "waiting"
+            setTimeout(()=>this.clearBoard(),5000)
         }
         else if(this.solve(this.parseBoard()) === "O") {
             player2.children[1].innerText = parseInt(player2.children[1].innerText) + 1 + "";
-            this.clearBoard();
+            conditions.turn = "waiting"
+            setTimeout(()=>this.clearBoard(),5000)
         }
         else if(this.solve(this.parseBoard()) === "Draw") {
+            conditions.turn = "waiting"
             alert("Draw!");
-            this.clearBoard();
+            setTimeout(()=>this.clearBoard(),5000)
         }
     },
     generateBoard() {
@@ -113,11 +116,12 @@ const functions = {
             cell.addEventListener('click',function() {
                 if(conditions.mode === "2 Players") {
                     if(this.innerHTML === " ") {
-                        this.innerText = conditions.turn;
                         if(conditions.turn === "X") {
+                            this.innerText = "X"
                             conditions.turn = "O"
                         }
-                        else{
+                        else if(conditions.turn === "O"){
+                            this.innerText = "O"
                             conditions.turn = "X"
                         }
                     }
@@ -125,16 +129,18 @@ const functions = {
                 else if(conditions.mode === "Computer") {
                     if(this.innerHTML === " ") {
                         if(conditions.turn === "X") {
-                            this.innerText = conditions.turn;
+                            this.innerText = "X";
+                            conditions.turn = "O";
                             if(functions.solve(functions.parseBoard()) === "Unfinished") {
-                                conditions.turn = "O";
                                 computer[conditions.difficulty]();
                             }
                         }
                     }
                 }
                 // Check board
-                functions.checkAndSet();
+                if(conditions.turn !== 'waiting') {
+                    functions.checkAndSet();
+                }
             })
             board.appendChild(cell)
         }
@@ -168,6 +174,85 @@ const functions = {
 }
 const computer = {
     easy() {
+        this.makeARandomMove();
+    },
+    normal() {
+        if(this.goForWin() === "Won" &&  generateNumber(100)>=30) {
+            this.goForWin()
+            return
+        }
+        else if(this.preventLoss() === "Prevented" &&  generateNumber(100)>=30 ) {
+            this.preventLoss()
+            return
+        }
+        else{
+            this.makeARandomMove()
+        }
+    },
+    hard() {
+        if(this.goForWin() === "Won") {
+            this.goForWin()
+            return
+        }
+        else if(this.preventLoss() === "Prevented" ) {
+            this.preventLoss()
+            return
+        }
+        else{
+            this.makeARandomMove()
+        }
+    },
+    goForWin() {
+        if(conditions.turn==="O"){
+            let gameState = functions.parseBoard().split('');
+            let section = 0;
+            for(let i =0;i<gameState.length;i++) {
+                if(gameState[i] === "X" || gameState[i] === "O") {
+                    continue
+                }
+                else if(gameState[i] === '-') {
+                    section++
+                    continue
+                }
+                else if(gameState[i] === " "){
+                    let newState = [...gameState];
+                    newState[i] = "O";
+                    if(functions.solve(newState.join(''))==='O') {
+                        console.log("Won at "+i)
+                        board.children[i-section].innerText = "O";
+                        conditions.turn = "X";
+                        return "Won"
+                    }
+                }
+            }
+        }
+    },
+    preventLoss() {
+        if(conditions.turn==="O"){
+            let gameState = functions.parseBoard().split('');
+            let section = 0;
+            for(let i =0;i<gameState.length;i++) {
+                if(gameState[i] === "X" || gameState[i] === "O") {
+                    continue
+                }
+                else if(gameState[i] === '-') {
+                    section++
+                    continue
+                }
+                else if(gameState[i] === " "){
+                    let newState = [...gameState];
+                    newState[i] = "X";
+                    if(functions.solve(newState.join(''))==='X') {
+                        console.log("Prevented at "+i)
+                        board.children[i-section].innerText = "O";
+                        conditions.turn = "X";
+                        return "Prevented"
+                    }
+                }
+            }
+        }
+    },
+    makeARandomMove() {
         // Get Empty Cells
         let cells = board.children;
         const emptyCells = [];
@@ -181,11 +266,8 @@ const computer = {
         cells[num].innerText = "O";
         conditions.turn = "X";
     },
-    normal() {
-        let cells = document.querySelectorAll('.cell');
-    },
-    hard() {
-        let cells = document.querySelectorAll('.cell');
+    generateNumber(num) {
+        return Math.floor(Math.random()*num);
     }
 }
 functions.generateBoard()
