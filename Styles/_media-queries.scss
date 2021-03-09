@@ -1,5 +1,5 @@
 @import 'mixins';
-@media only screen and (min-width: 320px) and (max-width: 600px) {
+@media only screen and (min-width: 320px) and (max-width: 460px) {
     html{
         font-size: 70%;
     }
@@ -43,9 +43,9 @@
         flex-wrap: nowrap;
     }
 }
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 460px) and (max-width: 600px) {
     html{
-        font-size: 80%;
+        font-size: 70%;
     }
     #mode{
         width: 30%;
@@ -66,7 +66,53 @@
         transform: translateY(-10px);
     }
     #board{
-        @include widthAndHeight(90%,50%);
+        @include widthAndHeight(80%,50%);
+        margin: auto;
+        transform: translateY(-10px);  
+    }
+    #player-2-difficulty{
+        display: flex;
+        @include widthAndHeight(90%,7%);
+        flex-wrap: wrap;
+        transform: translateY(-10px);
+    }
+    #player-2{
+        @include flex(space-around,center);
+        width: 100%;
+    }
+    #difficulty{
+        @include widthAndHeight(100%,100%);
+        display:none;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    html{
+        font-size: 80%;
+    }
+    #mode{
+        width: 30%;
+    }
+    .button{
+        width: 30%;
+    }
+    .button-small{
+        @include widthAndHeight(40%,60%);
+    }
+    #game{
+        flex-wrap: wrap;
+        padding-left: 7%;
+    }
+    #player-1{
+        @include flex(space-around,center);
+        @include widthAndHeight(90%,7%);
+        transform: translateY(-10px);
+    }
+    #board{
+        @include widthAndHeight(70%,55%);
+        margin: auto;
         transform: translateY(-10px);  
     }
     #player-2-difficulty{
@@ -98,7 +144,7 @@
         width: 20%;
     }
     #board{
-        width: 45%;
+        @include widthAndHeight(45%,55%);
     }
     .button-small{
         width: 100%;

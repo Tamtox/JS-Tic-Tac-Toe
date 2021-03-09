@@ -216,7 +216,7 @@ html {
       flex-wrap: wrap;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 600px) {
+@media only screen and (min-width: 320px) and (max-width: 460px) {
   html {
     font-size: 70%;
   }
@@ -292,9 +292,9 @@ html {
   }
 }
 
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 460px) and (max-width: 600px) {
   html {
-    font-size: 80%;
+    font-size: 70%;
   }
   #mode {
     width: 30%;
@@ -326,8 +326,86 @@ html {
             transform: translateY(-10px);
   }
   #board {
-    width: 90%;
+    width: 80%;
     height: 50%;
+    margin: auto;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #player-2-difficulty {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 90%;
+    height: 7%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #player-2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+  }
+  #difficulty {
+    width: 100%;
+    height: 100%;
+    display: none;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+  #mode {
+    width: 30%;
+  }
+  .button {
+    width: 30%;
+  }
+  .button-small {
+    width: 40%;
+    height: 60%;
+  }
+  #game {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding-left: 7%;
+  }
+  #player-1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 90%;
+    height: 7%;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  #board {
+    width: 70%;
+    height: 55%;
+    margin: auto;
     -webkit-transform: translateY(-10px);
             transform: translateY(-10px);
   }
@@ -380,6 +458,7 @@ html {
   }
   #board {
     width: 45%;
+    height: 55%;
   }
   .button-small {
     width: 100%;
