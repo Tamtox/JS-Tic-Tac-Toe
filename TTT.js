@@ -79,17 +79,17 @@ const functions = {
         if(this.solve(this.parseBoard()) === "X") {
             player1.children[1].innerText = parseInt(player1.children[1].innerText) + 1 + "";
             conditions.turn = "waiting"
-            setTimeout(()=>this.clearBoard(),3000)
+            setTimeout(()=>this.clearBoard(),2000)
         }
         else if(this.solve(this.parseBoard()) === "O") {
             player2.children[1].innerText = parseInt(player2.children[1].innerText) + 1 + "";
             conditions.turn = "waiting"
-            setTimeout(()=>this.clearBoard(),3000)
+            setTimeout(()=>this.clearBoard(),2000)
         }
         else if(this.solve(this.parseBoard()) === "Draw") {
             conditions.turn = "waiting"
             alert("Draw!");
-            setTimeout(()=>this.clearBoard(),3000)
+            setTimeout(()=>this.clearBoard(),1000)
         }
     },
     generateBoard() {
