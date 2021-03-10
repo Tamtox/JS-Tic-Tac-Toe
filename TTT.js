@@ -177,16 +177,17 @@ const computer = {
         this.makeARandomMove();
     },
     normal() {
-        if(this.goForWin() === "Won" &&  generateNumber(100)>=30) {
+        if(this.goForWin() === "Won" &&  this.generateNumber(100)>=30) {
             this.goForWin()
             return
         }
-        else if(this.preventLoss() === "Prevented" &&  generateNumber(100)>=30 ) {
+        else if(this.preventLoss() === "Prevented" &&  this.generateNumber(100)>=30 ) {
             this.preventLoss()
             return
         }
         else{
             this.makeARandomMove()
+            return
         }
     },
     hard() {
@@ -200,6 +201,7 @@ const computer = {
         }
         else{
             this.makeARandomMove()
+            return
         }
     },
     goForWin() {
@@ -218,7 +220,6 @@ const computer = {
                     let newState = [...gameState];
                     newState[i] = "O";
                     if(functions.solve(newState.join(''))==='O') {
-                        console.log("Won at "+i)
                         board.children[i-section].innerText = "O";
                         conditions.turn = "X";
                         return "Won"
@@ -243,7 +244,6 @@ const computer = {
                     let newState = [...gameState];
                     newState[i] = "X";
                     if(functions.solve(newState.join(''))==='X') {
-                        console.log("Prevented at "+i)
                         board.children[i-section].innerText = "O";
                         conditions.turn = "X";
                         return "Prevented"
