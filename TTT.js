@@ -79,11 +79,13 @@ const functions = {
         if(this.solve(this.parseBoard()) === "X") {
             player1.children[1].innerText = parseInt(player1.children[1].innerText) + 1 + "";
             conditions.turn = "waiting"
+            alert(`${player1.children[0].innerText} wins!`);
             setTimeout(()=>this.clearBoard(),2000)
         }
         else if(this.solve(this.parseBoard()) === "O") {
             player2.children[1].innerText = parseInt(player2.children[1].innerText) + 1 + "";
             conditions.turn = "waiting"
+            alert(`${player2.children[0].innerText} wins!`);
             setTimeout(()=>this.clearBoard(),2000)
         }
         else if(this.solve(this.parseBoard()) === "Draw") {
@@ -91,7 +93,7 @@ const functions = {
             alert("Draw!");
             setTimeout(()=>this.clearBoard(),1000)
         }
-    },
+    }, 
     generateBoard() {
         for(let i=0;i<9;i++) {
             let cell = document.createElement('div');
@@ -177,11 +179,11 @@ const computer = {
         this.makeARandomMove();
     },
     normal() {
-        if(this.goForWin() === "Won" &&  this.generateNumber(100)>=30) {
+        if(this.goForWin() === "Won" ) {
             this.goForWin()
             return
         }
-        else if(this.preventLoss() === "Prevented" &&  this.generateNumber(100)>=30 ) {
+        else if(this.preventLoss() === "Prevented") {
             this.preventLoss()
             return
         }
